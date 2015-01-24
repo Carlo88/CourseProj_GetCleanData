@@ -9,7 +9,7 @@ run_analysis<-function(){
   
   Data_1<-data #Data 1 contains the complete dataset
   #End task1. Now, I have the complete dataset (test+train sets with column names)
-
+  
   #2.Extracts only the measurements on the mean and standard deviation for each measurement.
   position<-grep("mean|std",names(data)) #Index position of colomn names that contain the words "mean" or "std"
   data2<-data[position] #I extract the column that have names including "mean"or"std"
@@ -55,7 +55,8 @@ run_analysis<-function(){
   names(subjects)<-c("subjects") #Put column name
   data4$activity<-as.character(data4$activity) #cast into character
   data4<-cbind(data4,subjects) #column bind
-  data5<-data.table(data4) #converts into datatable
+  data5<-data.table(data4)
   data5<-data5[, lapply(.SD, mean), by = list(subjects,activity)] #Calculate mean value for each column subsetting dataset according to subject and activity  
-  BigDataSet<-data5 #Completed! :)  
+  data6<-data.frame(data5)
+  BigDataSet<-data6 #Completed! :)  
 }
