@@ -1,4 +1,4 @@
-Tidy_dataset<-function(){
+run_analysis<-function(){
   
   #1.Merges the training and the test sets to create one data set.
   test_set<-read.table("./test/X_test.txt") #Load values from test dataset
