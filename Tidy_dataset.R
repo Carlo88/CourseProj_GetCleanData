@@ -28,7 +28,7 @@ Tidy_dataset<-function(){
   DataWithActNames<-data3 #Point 3 completed
   
   #4.Appropriately labels the data set with descriptive variable names. 
-  nam<-colnames(data3) #assigns col names to c 
+  nam<-colnames(DataWithActNames) #assigns col names to c 
   f<-function(x){
     x<-gsub('-mean',' Mean ',x) #substitute mean with Mean 
     x<-gsub('-std',' Stand.Dev ',x) #std with SD
@@ -36,6 +36,9 @@ Tidy_dataset<-function(){
     if (length(grep("^f",x))>0) gsub('f','Frequency Domain -',x) #Substitute f with Frequency Domain                 
   }
   nam<-f(nam)
+  Correct_Names<-nam #assignments
+  colnames(data3)<-Correct_Names
+  DataSet_Correct_Names<-data3
   
   
   #5.From the data set in step 4, creates a second, 
@@ -43,7 +46,7 @@ Tidy_dataset<-function(){
   # for each activity and each subject.
   
   #I create a second dataset called "data4"
-  data4<-data3
+  data4<-DataSet_Correct_Names
   #Use dplyr
   library(data.table)
   sub_train<-read.table("./train/subject_train.txt") #load subj number from train dataset
@@ -54,5 +57,5 @@ Tidy_dataset<-function(){
   data4<-cbind(data4,subjects) #column bind
   data5<-data.table(data4) #converts into datatable
   data5<-data5[, lapply(.SD, mean), by = list(subjects,activity)] #Calculate mean value for each column subsetting dataset according to subject and activity  
-    
+  BigDataSet<-data5 #Completed! :)  
 }
