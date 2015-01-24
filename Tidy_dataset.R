@@ -20,7 +20,7 @@ Tidy_dataset<-function(){
   activity<-as.character(activity) #cast to character vectors
   activity<-factor(activity,labels=c("WALKING","WALKING_UPSTAIRS","WALKING_DOWNSTAIRS","SITTING","STANDING","LAYING")) #converts number into activity names
   activity<-as.character(activity) #cast to character
-  data3<-cbind(data2,activity) #column binding
+  data3<-cbind(data2,activity)  #column binding
   
   #4.Appropriately labels the data set with descriptive variable names. 
   c<-colnames(data3) #assigns col names to c
